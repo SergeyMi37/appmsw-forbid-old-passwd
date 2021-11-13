@@ -1,57 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Export generator="Cache" version="25">
-  <Document name="isc-apptools-lockdown.ZPM">
+  <Document name="appmsw-forbid-old-passwd\.ZPM">
     <Module>
-      <Name>isc-apptools-lockdown</Name>
-      <Version>1.0.11</Version>
-      <Description>A program to change the security level and create users and add SQL privileges.</Description>
-	  <Keywords>lockdown admin</Keywords>
+      <Name>appmsw-forbid-old-passwd\</Name>
+      <Version>1.0.1</Version>
+      <Description>Prohibit the use of old passwords.</Description>
+	  <Keywords>admin</Keywords>
 		<Author>
 		<Person>Mikhaylenko Sergey</Person>
 		<CopyrightDate>2021</CopyrightDate>
 		<License>MIT</License>
 		<Notes>
 repository:
-https://github.com/SergeyMi37/isc-apptools-lockdown
+https://github.com/SergeyMi37/appmsw-forbid-old-passwd
 
 description:
-## Apply Security settings to "LockDown"
-USER>do ##class(appmsw.security.lockdown).SetSecurityLevel("lockdown","NewPassword123")
-or equivalent
-USER>zpm "install isc-apptools-lockdown -Dzpm.securitylevel=lockdown -Dzpm.newpasswd=NewPassword123"
-
-## Apply Security settings to "normal"
-USER>do ##class(appmsw.security.lockdown).SetSecurityLevel("normal","NewPassword123")
-or equivalent
-USER>zpm "install isc-apptools-lockdown -Dzpm.securitylevel=normal -Dzpm.newpasswd=NewPassword123"
-
-## Apply Security settings to "minimum"
-USER>do ##class(appmsw.security.lockdown).SetSecurityLevel("minimum","SYS")
-or equivalent
-USER>zpm "install isc-apptools-lockdown -Dzpm.securitylevel=minimum -Dzpm.newpasswd=SYS"
-
-## Added methods for saving the current security level to the global and applying these setti to other instances.
-To do this, you need to save the current applied security settings: the values ​​of the Enabled and AutheEnabled parameters in the predefined objects of the Security.Applications, Security.Services and Security.System classes in the global by running the command
-do ##class(appmsw.security.lockdown).SaveSecLevel(1,"Custom",,"d:\!\Custom.xml")
-Import this Custom.xml global to the target instance and apply this applied security level there with the command
-do ##class(appmsw.security.lockdown).SetSecurityLevel("Custom","Custom321level")
-or
-zpm "install isc-apptools-lockdown -Dzpm.securitylevel=Custom -Dzpm.newpasswd=Custom321level"
+To meet the requirements of section 8.2.5 PCI DSS "Prohibit the use of old passwords", a small application has been implemented that will be launched by the system when a user tries to change a password and check if it was used before.
 		</Notes>
 		</Author>
       <Packaging>module</Packaging>
-	  <Default Name="newpasswd" Value="null" />
-	  <Default Name="securitylevel" Value="none" />
 	  <SourcesRoot>src</SourcesRoot>
-      <Resource Name="appmsw.security.PKG"/>
-	  <Resource Name="appmsw.security.lockdown.GBL"/>
-	  <Invokes>	
-        <Invoke Class="appmsw.security.lockdown" Method="SetSecurityLevel">	
-          <Arg>${securitylevel}</Arg>
-		  <Arg>${newpasswd}</Arg>
-        </Invoke>
-      </Invokes>
-	  <AfterInstallMessage>You can apply security settings to "LockDown": zpm "install isc-apptools-lockdown -Dzpm.securitylevel=lockdown -Dzpm.newpasswd=NewPassword123"</AfterInstallMessage>
+      <Resource Name="PASSWORD.MAC" />
+	  <AfterInstallMessage>You can ...</AfterInstallMessage>
 	  </Module>
   </Document>
 </Export>

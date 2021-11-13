@@ -1,17 +1,10 @@
-![](https://github.com/SergeyMi37/isc-apptools-lockdown/blob/master/doc/favicon.ico)
-## isc-apptools-lockdown
-[![Gitter](https://img.shields.io/badge/Available%20on-Intersystems%20Open%20Exchange-00b2a9.svg)](https://openexchange.intersystems.com/package/isc-apptools-lockdown)
-[![GitHub all releases](https://img.shields.io/badge/Available%20on-GitHub-black)](https://github.com/SergeyMi37/isc-apptools-lockdown)
-[![Habr](https://img.shields.io/badge/Available%20article%20on-Intersystems%20Community-orange)](https://community.intersystems.com/post/increasing-security-intersystems-iris-dbms)
+![](https://github.com/SergeyMi37/appmsw-forbid-old-passwd/blob/master/doc/Screenshot_1.png)
+## forbid-old-passwd
 [![license](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/SergeyMi37/isc-apptools-lockdown">
+<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/SergeyMi37/appmsw-forbid-old-passwd">
 
-A program to change the security level and create users and add SQL privileges.
-
-## What's new
-The ability to change the security level not only to lockdown, but also to minimum and normal has been implemented.
-Added methods for saving the custom security level to the global and applying these settings to other instances
+To meet the requirements of section 8.2.5 PCI DSS "Prohibit the use of old passwords", a small application has been implemented that will be launched by the system when a user tries to change a password and check if it was used before.
 
 
 ## Installation with ZPM
@@ -33,7 +26,7 @@ Make sure you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installi
 Clone/git pull the repo into any local directory
 
 ```
-git clone https://github.com/SergeyMi37/isc-apptools-lockdown.git
+git clone https://github.com/SergeyMi37/appmsw-forbid-old-passwd
 ```
 
 Open the terminal in this directory and run:
@@ -53,76 +46,9 @@ Open IRIS terminal:
 
 ```
 docker-compose exec iris iris session iris
+...
+%SYS>set ss=##class(Security.System).%OpenId("SYSTEM")
+%SYS>set ss.PasswordValidationRoutine="PASSWORD.MAC"
+%SYS>write ss.%Save()
+1
 ```
-
-## Increasing security settings
-You can replace the shared password if the password of the predefined system users has been compromised
-```
-USER>do ##class(appmsw.security.lockdown).ChangePassword("NewPass231",##class(appmsw.security.lockdown).GetPreparedUsers())
-```
-
-Increase system security to LockDown
-The method disables services and applications as in LockDown. Deletes the namespaces "DOCBOOK", "ENSDEMO", "SAMPLES"
-The method enables auditing and configures registration of all events in the portal, except for switching the log
-and modification of system properties
-For all predefined users, change the password and change the properties as in LockDown
-        newPassword - new single password instead of SYS. For LockDown security level, it has an 8.32ANP pattern
-        sBindings = 1 Service% service_bindings enable
-        sCachedirect = 1 Service% service_cachedirect enable
-        InactiveLimit = 90
-        DemoDelete = 0 Demoens, Samples namespaces are being deleted
-		
-        AuditOn = 1
-        sECP = 1 Service% service_ecp enable
-        sBindingsIP - list of ip addresses with a semicolon for which to allow CacheStudio connection.
-
-For ECP configurations, you need to add the addresses of all servers and clients to allow connection on% Net.RemoteConnection to remove "abandoned" tasks
-        sCachedirectIP - list of ip addresses with a semicolon for which to allow legacy applications connection.
-        sECPIP - list of ip addresses with a semicolon for which to allow connection to the ECP server.
-        AuthLDAP = 1 In addition to the password, also enable LDAP authentication
-
-### Apply Security settings to "LockDown"
-
-USER>do ##class(appmsw.security.lockdown).SetSecurityLevel("lockdown","NewPassword123")
-
-or equivalent
-
-USER>zpm "install isc-apptools-lockdown -Dzpm.securitylevel=lockdown" -Dzpm.newpasswd=NewPassword123"
-
-
-### Apply Security settings to "normal"
-
-USER>do ##class(appmsw.security.lockdown).SetSecurityLevel("normal","NewPassword123")
-
-or equivalent
-
-USER>zpm "install isc-apptools-lockdown -Dzpm.securitylevel=normal" -Dzpm.newpasswd=NewPassword123"
-
-
-
-### Apply Security settings to "minimum"
-
-USER>do ##class(appmsw.security.lockdown).SetSecurityLevel("minimum","SYS")
-
-or equivalent
-
-USER>zpm "install isc-apptools-lockdown -Dzpm.securitylevel=minimum" -Dzpm.newpasswd=SYS"
-
-
-## Added methods for saving the current security level to the global and applying these settings to other instances.
-
-To do this, you need to save the current applied security settings: the values ​​of the Enabled and AutheEnabled parameters in the predefined objects of the Security.Applications, Security.Services and Security.System classes in the global by running the command
-
-do ##class(appmsw.security.lockdown).SaveSecLevel(1,"Custom",,"d:\!\Custom.xml")
-
-Import this Custom.xml global to the target instance and apply this applied security level there with the command
-
-do ##class(appmsw.security.lockdown).SetSecurityLevel("Custom","Custom321level")
-
-or
-
-zpm "install isc-apptools-lockdown -Dzpm.securitylevel=Custom -Dzpm.newpasswd=Custom321level"
-
-All other features of the interface part of the software solution can be found in the 
-[document](https://community.intersystems.com/post/increasing-security-intersystems-iris-dbms)
- or in an [article of a Russian resource](https://habr.com/en/post/436042/)
