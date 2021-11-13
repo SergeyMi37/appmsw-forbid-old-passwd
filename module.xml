@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Export generator="Cache" version="25">
-  <Document name="appmsw-forbid-old-passwd\.ZPM">
+  <Document name="appmsw-forbid-old-passwd.ZPM">
     <Module>
-      <Name>appmsw-forbid-old-passwd\</Name>
+      <Name>appmsw-forbid-old-passwd</Name>
       <Version>1.0.1</Version>
       <Description>Prohibit the use of old passwords.</Description>
 	  <Keywords>admin</Keywords>
