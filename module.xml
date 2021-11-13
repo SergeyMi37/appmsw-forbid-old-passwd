@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25">
+  <Document name="isc-apptools-lockdown.ZPM">
+    <Module>
+      <Name>isc-apptools-lockdown</Name>
+      <Version>1.0.11</Version>
+      <Description>A program to change the security level and create users and add SQL privileges.</Description>
+	  <Keywords>lockdown admin</Keywords>
+		<Author>
+		<Person>Mikhaylenko Sergey</Person>
+		<CopyrightDate>2021</CopyrightDate>
+		<License>MIT</License>
+		<Notes>
+repository:
+https://github.com/SergeyMi37/isc-apptools-lockdown
+
+description:
+## Apply Security settings to "LockDown"
+USER>do ##class(appmsw.security.lockdown).SetSecurityLevel("lockdown","NewPassword123")
+or equivalent
+USER>zpm "install isc-apptools-lockdown -Dzpm.securitylevel=lockdown -Dzpm.newpasswd=NewPassword123"
+
+## Apply Security settings to "normal"
+USER>do ##class(appmsw.security.lockdown).SetSecurityLevel("normal","NewPassword123")
+or equivalent
+USER>zpm "install isc-apptools-lockdown -Dzpm.securitylevel=normal -Dzpm.newpasswd=NewPassword123"
+
+## Apply Security settings to "minimum"
+USER>do ##class(appmsw.security.lockdown).SetSecurityLevel("minimum","SYS")
+or equivalent
+USER>zpm "install isc-apptools-lockdown -Dzpm.securitylevel=minimum -Dzpm.newpasswd=SYS"
+
+## Added methods for saving the current security level to the global and applying these setti to other instances.
+To do this, you need to save the current applied security settings: the values ​​of the Enabled and AutheEnabled parameters in the predefined objects of the Security.Applications, Security.Services and Security.System classes in the global by running the command
+do ##class(appmsw.security.lockdown).SaveSecLevel(1,"Custom",,"d:\!\Custom.xml")
+Import this Custom.xml global to the target instance and apply this applied security level there with the command
+do ##class(appmsw.security.lockdown).SetSecurityLevel("Custom","Custom321level")
+or
+zpm "install isc-apptools-lockdown -Dzpm.securitylevel=Custom -Dzpm.newpasswd=Custom321level"
+		</Notes>
+		</Author>
+      <Packaging>module</Packaging>
+	  <Default Name="newpasswd" Value="null" />
+	  <Default Name="securitylevel" Value="none" />
+	  <SourcesRoot>src</SourcesRoot>
+      <Resource Name="appmsw.security.PKG"/>
+	  <Resource Name="appmsw.security.lockdown.GBL"/>
+	  <Invokes>	
+        <Invoke Class="appmsw.security.lockdown" Method="SetSecurityLevel">	
+          <Arg>${securitylevel}</Arg>
+		  <Arg>${newpasswd}</Arg>
+        </Invoke>
+      </Invokes>
+	  <AfterInstallMessage>You can apply security settings to "LockDown": zpm "install isc-apptools-lockdown -Dzpm.securitylevel=lockdown -Dzpm.newpasswd=NewPassword123"</AfterInstallMessage>
+	  </Module>
+  </Document>
+</Export>
