@@ -48,7 +48,7 @@ Open IRIS terminal:
 docker-compose exec iris iris session iris
 ...
 %SYS>set ss=##class(Security.System).%OpenId("SYSTEM")
-%SYS>set ss.PasswordValidationRoutine="PASSWORD.MAC"
+%SYS>set ss.PasswordValidationRoutine="CHECK^PASSWORD"
 %SYS>write ss.%Save()
 1
 ```
