@@ -1,4 +1,4 @@
-![](https://github.com/rcemper/appmsw-forbid-old-passwd/blob/master/doc/Screenshot_2rcc.png)
+![](https://github.com/SergeyMi37/appmsw-forbid-old-passwd/blob/master/doc/Screenshot_2rcc.png)
 ## forbid-old-passwd
 [![license](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -54,4 +54,4 @@ docker-compose exec iris iris session iris
 ```
 Or add a parameter through the interface:
 `Password validation routine`
-![](https://github.com/rcemper/appmsw-forbid-old-passwd/blob/master/doc/Screenshot_1rcc.png)
+![](https://github.com/SergeyMi37/appmsw-forbid-old-passwd/blob/master/doc/Screenshot_1rcc.png)
