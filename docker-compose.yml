@@ -6,7 +6,8 @@ services:
       dockerfile: Dockerfile
     restart: always
     ports: 
-      - 51673:51773
+#      - 51673:51773
+      - 51673:1972
       - 52673:52773
       - 53773
     # network_mode: "host"
