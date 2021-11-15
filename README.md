@@ -15,7 +15,7 @@ zn "%SYS" d ##class(Security.SSLConfigs).Create("z") s r=##class(%Net.HttpReques
 ```
 If ZPM is installed, then can be set with the command
 ```
-zpm:USER>install isc-apptools-lockdown
+zpm:USER>install appmsw-forbid-old-passwd
 ```
 ## Installation with Docker
 
