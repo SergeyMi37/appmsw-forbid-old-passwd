@@ -1,4 +1,4 @@
-![](https://github.com/SergeyMi37/appmsw-forbid-old-passwd/blob/master/doc/Screenshot_2.png)
+![](https://github.com/SergeyMi37/appmsw-forbid-old-passwd/blob/master/doc/Screenshot_2rcc.png)
 ## forbid-old-passwd
 [![license](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -48,10 +48,10 @@ Open IRIS terminal:
 docker-compose exec iris iris session iris
 ...
 %SYS>set ss=##class(Security.System).%OpenId("SYSTEM")
-%SYS>set ss.PasswordValidationRoutine="PASSWORD.MAC"
+%SYS>set ss.PasswordValidationRoutine="CHECK^PASSWORD"
 %SYS>write ss.%Save()
 1
 ```
 Or add a parameter through the interface:
 `Password validation routine`
-![](https://github.com/SergeyMi37/appmsw-forbid-old-passwd/blob/master/doc/Screenshot_1.png)
+![](https://github.com/SergeyMi37/appmsw-forbid-old-passwd/blob/master/doc/Screenshot_1rcc.png)
