@@ -1,4 +1,4 @@
-![](https://github.com/SergeyMi37/appmsw-forbid-old-passwd/blob/master/doc/Screenshot_2.png)
+![](https://github.com/rcemper/appmsw-forbid-old-passwd/blob/master/doc/Screenshot_2rcc.png)
 ## forbid-old-passwd
 [![license](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
