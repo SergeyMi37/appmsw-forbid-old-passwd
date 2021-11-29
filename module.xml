@@ -3,7 +3,7 @@
   <Document name="appmsw-forbid-old-passwd.ZPM">
     <Module>
       <Name>appmsw-forbid-old-passwd</Name>
-      <Version>1.0.2</Version>
+      <Version>1.0.3</Version>
       <Description>Prohibit the use of old passwords.</Description>
 	  <Keywords>admin</Keywords>
 		<Author>
@@ -25,7 +25,10 @@ To meet the requirements of section 8.2.5 PCI DSS "Prohibit the use of old passw
       <Packaging>module</Packaging>
 	  <SourcesRoot>src</SourcesRoot>
       <Resource Name="PASSWORD.MAC" />
-	<AfterInstallMessage>You can install program: set ss=##class(Security.System).%OpenId("SYSTEM"),ss.PasswordValidationRoutine="CHECK^PASSWORD.MAC" write ss.%Save()</AfterInstallMessage>
+<AfterInstallMessage>You can install program:
+&#13;set ss=##class(Security.System).%OpenId("SYSTEM")
+&#13;set ss.PasswordValidationRoutine="CHECK^PASSWORD.MAC"
+&#13;write ss.%Save()</AfterInstallMessage>
 	  </Module>
   </Document>
 </Export>
