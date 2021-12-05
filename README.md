@@ -2,9 +2,12 @@
 ## forbid-old-passwd
 [![Gitter](https://img.shields.io/badge/Available%20on-Intersystems%20Open%20Exchange-00b2a9.svg)](https://openexchange.intersystems.com/package/forbid-old-passwd)
 [![DC](https://img.shields.io/badge/Available%20article%20on-Intersystems%20Community-orange)](https://community.intersystems.com/post/program-prohibit-use-old-passwords)
-[![license](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/SergeyMi37/appmsw-forbid-old-passwd">
+ [![Quality Gate Status](https://community.objectscriptquality.com/api/project_badges/measure?project=intersystems_iris_community%2Fappmsw-forbid-old-passwd&metric=alert_status)](https://community.objectscriptquality.com/dashboard?id=intersystems_iris_community%2Fappmsw-forbid-old-passwd)
+ <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/SergeyMi37/appmsw-forbid-old-passwd">
+ [![license](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+
 
 To meet the requirements of section 8.2.5 PCI DSS "Prohibit the use of old passwords", a small application has been implemented that will be launched by the system when a user tries to change a password and check if it was used before.
 
