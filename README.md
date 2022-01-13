@@ -60,3 +60,21 @@ docker-compose exec iris iris session iris
 Or add a parameter through the interface:
 `Password validation routine`
 ![](https://github.com/SergeyMi37/appmsw-forbid-old-passwd/blob/master/doc/Screenshot_1rcc.png)
+
+## How to install without container and without zpm
+
+Step 1: Be logged into github and download PASSWORD.mac
+Step 2: Import and compile PASSWORD.mac into the %SYS namespace.
+Step 3: Configure the instance to use PASSWORD routine
+```
+USER>zn "%SYS"
+%SYS>set ss=##class(Security.System).%OpenId("SYSTEM")
+%SYS>set ss.PasswordValidationRoutine="CHECK^PASSWORD"
+%SYS>write ss.%Save()
+1
+```
+Step 5: Confirm setting in Management Portal
+System Administration > Security > System Wide Parameters > “Password validation routine” should say “CHECK^PASSWORD”
+Step 6: Test by making a new password for a user. This logs the password into the secure log location.
+ Then, try to change the password for this user again, but making the password the same as the first one.
+ You should see the error "This password has already been used."
