@@ -64,8 +64,11 @@ Or add a parameter through the interface:
 ## How to install without container and without zpm
 
 `Step 1:` Be logged into github and download PASSWORD.mac
+
 `Step 2:` Import and compile PASSWORD.mac into the %SYS namespace.
+
 `Step 3:` Configure the instance to use PASSWORD routine
+
 ```
 USER>zn "%SYS"
 %SYS>set ss=##class(Security.System).%OpenId("SYSTEM")
@@ -73,6 +76,7 @@ USER>zn "%SYS"
 %SYS>write ss.%Save()
 1
 ```
+
 `Step 5:` Confirm setting in Management Portal
 System Administration > Security > System Wide Parameters > “Password validation routine” should say “CHECK^PASSWORD”
 
