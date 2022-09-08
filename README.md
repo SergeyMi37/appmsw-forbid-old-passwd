@@ -4,6 +4,7 @@
 [![DC](https://img.shields.io/badge/Available%20article%20on-Intersystems%20Community-orange)](https://community.intersystems.com/post/program-prohibit-use-old-passwords)
 
  [![Quality Gate Status](https://community.objectscriptquality.com/api/project_badges/measure?project=intersystems_iris_community%2Fappmsw-forbid-old-passwd&metric=alert_status)](https://community.objectscriptquality.com/dashboard?id=intersystems_iris_community%2Fappmsw-forbid-old-passwd)
+ 
  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/SergeyMi37/appmsw-forbid-old-passwd">
  [![license](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
